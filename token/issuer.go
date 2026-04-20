@@ -55,7 +55,7 @@ func (t *Issuer) Issue(subject string) string {
 		NotBefore: jwt.NewNumericDate(now),
 		Subject:   subject,
 	}
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+	token := jwt.NewWithClaims(t.signingMethod, claims)
 	tokenString, _ := token.SignedString(t.secretKey)
 	return tokenString
 }
